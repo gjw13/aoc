@@ -34,9 +34,6 @@ def eval(lines: str) -> int:
         if line.strip():
             for x, char in enumerate(line.strip()):
                 map[x, y] = char
-    # print("Initial state:")
-    # print_map(map, get_num_cols(lines), get_num_rows(lines))
-    # print("--------------------------------")
     i, j = 0, 0
 
     # Tracks the number of rolls not surrounded by more than 4 @s
@@ -61,9 +58,6 @@ def eval(lines: str) -> int:
             j = 0
         for (i, j) in removable:
             map[i, j] = "x"
-        # print(f"Pass removed {len(removable)} rolls.")
-        # print_map(map, get_num_cols(lines), get_num_rows(lines))
-        # print("--------------------------------")
         removable.clear()
     return total_rolls_removed
 

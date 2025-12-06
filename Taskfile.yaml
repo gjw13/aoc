@@ -1,0 +1,28 @@
+version: 3
+
+vars:
+  YEAR: "2025"
+  FILE_NAME: "full.txt"
+tasks:
+  run:
+    internal: true
+    desc: "Run the given Python file with the given input file"
+    dir: "{{ .YEAR }}"
+    cmds:
+      - python {{ .PYTHON_FILE }} {{ .INPUT_FILE }}
+  dayN:
+    cmds:
+      - task: run
+        vars:
+          PYTHON_FILE: "{{ .DAY }}/part1.py"
+          INPUT_FILE: "{{ .FILE_NAME }}"
+      - task: run
+        vars:
+          PYTHON_FILE: "{{ .DAY }}/part2.py"
+          INPUT_FILE: "{{ .FILE_NAME }}"
+  day5:
+    cmds:
+      - task: dayN
+        vars:
+          DAY: "day5"
+          FILE_NAME: "full.txt"
